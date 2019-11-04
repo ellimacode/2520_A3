@@ -22,7 +22,7 @@ common.o: common.c
 principals.o: principals.c binary.h common.h
 	$(CC) $(CFLAGS) -c principals.c
 
-a3.o: binary.h common.h name.h title.h principals.h
+a3.o: a3.c binary.h common.h name.h title.h principals.h
 	$(CC) $(CFLAGS) -c a3.c
 
 clean: 
