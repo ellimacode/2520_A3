@@ -8,6 +8,8 @@ char *get_name(char *argv[]) {
 	char *string;
 	
 	char buffer[256];
+	
+	char *p;
 	 
 	string = malloc(sizeof(strlen(string) + strlen("name.basics.tsv")) + 1);
 	
@@ -19,13 +21,32 @@ char *get_name(char *argv[]) {
 	{
 		while (fgets(buffer, sizeof(buffer), fp))
 		{
-			fprintf(stdout, "%s", buffer);
+			/* fprintf(stdout, "%s", buffer); */
+			
+			/* first column. */
+			strtok(buffer, "\t");
+		
+		    /* second column. */
+		    strtok(NULL, "\t");
+		
+		    /* third column. */
+		    strtok(NULL, "\t");
+		
+		    /* fourth column. */
+		    strtok(NULL, "\t");
+		
+		    /* fifth column. */
+		    strtok(NULL, "\t");
+		
+		    /* sixth column. */
+		    strtok(NULL, "\t");
+		    
 		}
 		
 		fclose(fp);
 		
 		/* to retrieve column. */
-	    get_column();
+	    
 	    
 	}
 	
