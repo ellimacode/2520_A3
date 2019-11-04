@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "name.h"
+#include "common.h"
 
 char *get_name(char *argv[]) {
 	FILE *fp;
@@ -20,10 +21,23 @@ char *get_name(char *argv[]) {
 		{
 			fprintf(stdout, "%s", buffer);
 		}
+		
 		fclose(fp);
+		
+		/* to retrieve column. */
+	    get_column();
+	    
+	}
+	
+	else
+	{
+		printf("The file doesn't exist\n");
 	}
 	
 	free(string);
+	
+	
 
     return NULL;
 }
+
