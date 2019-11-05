@@ -2,59 +2,61 @@
 #include "name.h"
 #include "common.h"
 
+/* NAME: Camille Cua
+ * ID: 1046663
+ * EMAIL: ccua@uoguelph.ca */
+
 char *get_name(char *argv[]) {
 	
 	FILE *fp;
-	char *string;
+	char *ptr;
 	char buffer[256];
 	
+	/* allocate an array of struct name_basics */
+	struct name_basics *names;
+	
+	/* temorary string, reads column */
+	char *temp;
+	
 	int lines = 0;
-	int tab = 0;
 	
+	ptr = malloc(sizeof(strlen(ptr) + strlen("name.basics.tsv")) + 1);
 	
-	char *a1 = "actor";
-	char *a2 = "actress";
+	strcpy(ptr, "name.basics.tsv");
 	
-	 
-	string = malloc(sizeof(strlen(string) + strlen("name.basics.tsv")) + 1);
-	
-	strcpy(string, "name.basics.tsv");
-	
-	fp = fopen(string, "r");
+	fp = fopen(ptr, "r");
 	
 	if (fp != NULL)
 	{
-		while (fgets(buffer, sizeof(buffer), fp) != NULL)
+	    while (fgets(buffer, sizeof(buffer), fp))
 		{
-			strtok(buffer, "\t");
-			strtok(NULL, "\t");
-			strtok(NULL, "\t");
-			strtok(NULL, "\t");
-			if (strtok(NULL, "\t") != NULL)
-			{
-				tab++;
-				if (tab == 4 || tab == 5)
-				{
-					if (strstr(buffer, a1) || strstr(buffer, a2))
-					{
-						lines++;
-					}
-				}
-			}
+			temp = strtok(buffer, "\t");
 			
-		}
-		
-		fseek(fp, 0, SEEK_SET);
-		
-	  }
+			temp = strtok(NULL, "\t");
+			
+			temp = strtok(NULL, "\t");
+			
+			temp = strtok(NULL, "\t");
+			
+			temp = strtok(NULL, "\t");
+			
+		    if ((strcmp(temp, "actor") == 0)|| (strcmp(temp, "actress") == 0))
+			{
+				lines++;					
+			}
+	    }
+    }
 			
 	fclose(fp);
 	
-	printf("%d\n", lines);
-
+	fseek(fp, 0, SEEK_SET);
 	
-    free(string);
+	names = malloc(sizeof(name_basics) * lines);
 	
-    return NULL;
+    free(ptr);
+    
+    printf("%d\n", lines);
+	
+    return names;
 }
 
