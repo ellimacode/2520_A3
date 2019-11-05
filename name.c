@@ -6,21 +6,20 @@
  * ID: 1046663
  * EMAIL: ccua@uoguelph.ca */
 
-char *get_name(char *argv[]) {
-	
-	FILE *fp;
+char *get_name(FILE *fp) {
 	char *ptr;
 	char buffer[256];
 	
 	/* allocate an array of struct name_basics */
-	struct name_basics *names;
+	struct name_basics *array;
+	struct name_basics result;
 	
 	/* temorary string, reads column */
 	char *temp;
 	
 	int lines = 0;
 	
-	ptr = malloc(sizeof(strlen(ptr) + strlen("name.basics.tsv")) + 1);
+	ptr = malloc(sizeof(ptr) + 1);
 	
 	strcpy(ptr, "name.basics.tsv");
 	
@@ -31,8 +30,10 @@ char *get_name(char *argv[]) {
 	    while (fgets(buffer, sizeof(buffer), fp))
 		{
 			temp = strtok(buffer, "\t");
+			result.nconst = temp;
 			
 			temp = strtok(NULL, "\t");
+			result.primaryName = temp;
 			
 			temp = strtok(NULL, "\t");
 			
@@ -49,14 +50,17 @@ char *get_name(char *argv[]) {
 			
 	fclose(fp);
 	
+	/* beginning of the file */
 	fseek(fp, 0, SEEK_SET);
 	
-	names = malloc(sizeof(name_basics) * lines);
+	/* malloc for size of name_basics array */
+	array = malloc(sizeof(struct name_basics) * lines);
 	
     free(ptr);
     
-    printf("%d\n", lines);
+    printf("Lines: %d\n", lines);
 	
-    return names;
+    return array;
 }
+
 

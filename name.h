@@ -8,6 +8,6 @@ struct name_basics {
 	char *primaryName;
 };
 
-char *get_name(char *argv[]);
+char *get_name(FILE *fp);
 
 
