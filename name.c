@@ -3,13 +3,18 @@
 #include "common.h"
 
 char *get_name(char *argv[]) {
+	
 	FILE *fp;
-	
 	char *string;
-	
 	char buffer[256];
 	
-	char *p;
+	int lines = 0;
+	int tab = 0;
+	
+	
+	char *a1 = "actor";
+	char *a2 = "actress";
+	
 	 
 	string = malloc(sizeof(strlen(string) + strlen("name.basics.tsv")) + 1);
 	
@@ -19,46 +24,37 @@ char *get_name(char *argv[]) {
 	
 	if (fp != NULL)
 	{
-		while (fgets(buffer, sizeof(buffer), fp))
+		while (fgets(buffer, sizeof(buffer), fp) != NULL)
 		{
-			/* fprintf(stdout, "%s", buffer); */
-			
-			/* first column. */
 			strtok(buffer, "\t");
-		
-		    /* second column. */
-		    strtok(NULL, "\t");
-		
-		    /* third column. */
-		    strtok(NULL, "\t");
-		
-		    /* fourth column. */
-		    strtok(NULL, "\t");
-		
-		    /* fifth column. */
-		    strtok(NULL, "\t");
-		
-		    /* sixth column. */
-		    strtok(NULL, "\t");
-		    
+			strtok(NULL, "\t");
+			strtok(NULL, "\t");
+			strtok(NULL, "\t");
+			if (strtok(NULL, "\t") != NULL)
+			{
+				tab++;
+				if (tab == 4 || tab == 5)
+				{
+					if (strstr(buffer, a1) || strstr(buffer, a2))
+					{
+						lines++;
+					}
+				}
+			}
+			
 		}
 		
-		fclose(fp);
+		fseek(fp, 0, SEEK_SET);
 		
-		/* to retrieve column. */
-	    
-	    
-	}
+	  }
+			
+	fclose(fp);
 	
-	else
-	{
-		printf("The file doesn't exist\n");
-	}
-	
-	free(string);
-	
-	
+	printf("%d\n", lines);
 
+	
+    free(string);
+	
     return NULL;
 }
 
