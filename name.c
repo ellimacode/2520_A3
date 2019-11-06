@@ -10,7 +10,7 @@
 struct name_basics *get_name(char *argv) {
 	FILE *fp;
 	char *path;
-	int i=0;
+	int i = 0;
 	char buffer[1024];
 	char oneCol[1024];
 	
