@@ -5,5 +5,8 @@
 
 
 #include <stdio.h>
+#include "title.h"
+#include "name.h"
+#include "principals.h"
 
 

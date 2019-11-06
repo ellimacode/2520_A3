@@ -10,4 +10,27 @@
 #include <stdlib.h>
 #include <ctype.h>
 
+struct name_all {
+	struct name_basics *array;
+	int nElements;
+	struct tree *n;
+	struct tree *pN;
+};
+
+struct title_all {
+	struct title_basics *array1;
+	int nElements;
+	struct tree *t;
+	struct tree *pT;
+};
+
+struct principals_all {
+	struct principals_all *array2;
+	int nElements;
+	struct tree *n;
+	struct tree *t;
+	struct tree *c;
+};
+
+
 #endif
