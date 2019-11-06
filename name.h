@@ -1,3 +1,7 @@
+/* NAME: Camille Cua
+ * ID: 1046663
+ * EMAIL: ccua@uoguelph.ca */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -8,6 +12,6 @@ struct name_basics {
 	char *primaryName;
 };
 
-char *get_name(FILE *fp);
+struct name_basics *get_name(char *argv);
 
 

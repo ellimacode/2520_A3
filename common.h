@@ -10,6 +10,9 @@
 #include <string.h>
 #include <ctype.h>
 
+
+void get_column(char *line, char *cols, int colNum);
+
 #endif
 
 
